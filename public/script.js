@@ -6,6 +6,8 @@ const quoteContainer = document.getElementById('quote-container');
 const quoteText = document.querySelector('.quote');
 const attributionText = document.querySelector('.attribution');
 
+const updateContainer = document.getElementById('update-container')
+
 const resetQuotes = () => {
   quoteContainer.innerHTML = '';
 }
@@ -23,7 +25,7 @@ const renderQuotes = (quotes = []) => {
       const newQuote = document.createElement('div');
       newQuote.className = 'single-quote';
       newQuote.innerHTML = `<div class="quote-text">${quote.quote}</div>
-      <div class="attribution">- ${quote.person}</div><button class="delete-btn" data-id=${quote.id}>Delete Quote</button`;
+      <div class="attribution">- ${quote.person}</div><button class="delete-btn" data-id=${quote.id}>Delete Quote</button><button class="update-btn" data-id=${quote.id}>Update Quote</button>`;
       quoteContainer.appendChild(newQuote);
     });
   } else {
@@ -31,6 +33,7 @@ const renderQuotes = (quotes = []) => {
   }
 }
 
+//Bubbling event for deleting quote
 quoteContainer.addEventListener('click', (e) => {
   if(e.target.classList.contains('delete-btn')){
     const id = e.target.dataset.id
@@ -48,6 +51,27 @@ quoteContainer.addEventListener('click', (e) => {
     .then(response => {
       renderQuotes(response.quotes)
     })
+  }
+})
+
+
+
+//Bubbling event for updating quote
+quoteContainer.addEventListener('click', (e) => {
+  if(e.target.classList.contains('update-btn')){
+    
+    /* const id = e.target.dataset.id
+    const quoteToUpdate = getQuoteById(id, quotes)
+    const quoteDiv = document.createElement('div')
+    const quote = document.createElement('input')
+    quote.type = 'text'
+    quote.value = quoteToUpdate.quote
+    const person = document.createElement('input')
+    person.type = 'text'
+    person.value = quoteToUpdate.person
+    quoteDiv.append(quote)
+    quoteDiv.append(person)
+    newQuote.append(quoteDiv) */
   }
 })
 

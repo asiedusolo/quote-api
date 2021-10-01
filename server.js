@@ -35,6 +35,18 @@ app.get('/api/quotes', (req, res, next) => {
     }
 })
 
+app.get('/api/quotes/:id', (req, res, next) => {
+    const quoteIndex = getIndexById(req.params.id, quotes)
+    if(quoteIndex !== -1){
+        const quoteById = getQuoteById(req.params.id, quotes)
+        res.send({
+            quote: quoteById
+        }) 
+    }else{
+        res.status(404).send()
+    }
+})
+
 app.post('/api/quotes', (req, res, next) => {
     const newQuote = addQuote(req.query)
     if(newQuote){
