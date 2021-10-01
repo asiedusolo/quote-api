@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const { quotes } = require('./data');
-const { getRandomElement, getAllQuotesByPerson, addQuote } = require('./utils');
+const { getRandomElement, getAllQuotesByPerson, addQuote, getQuoteById, getIndexById } = require('./utils');
 
 const PORT = process.env.PORT || 4001;
 

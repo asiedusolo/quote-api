@@ -1,5 +1,4 @@
-let currentQuote = 0
-
+let quoteIdCounter = 0
 const getQuoteById = (id, quotes) => {
   const quote = quotes.find(quote => {
     return quote.id === id
@@ -29,9 +28,12 @@ const getAllQuotesByPerson = (person, arr) => {
 }
 
 const addQuote = (queryObject) => {
-
   if(queryObject.hasOwnProperty('quote') && queryObject.hasOwnProperty('person')){
+    let currentQuoteId
+    quoteIdCounter += 1
+    currentQuoteId = quoteIdCounter
     return {
+      id: currentQuoteId,
       quote: queryObject.quote,
       person: queryObject.person
     }
@@ -43,5 +45,7 @@ const addQuote = (queryObject) => {
 module.exports = {
   getRandomElement,
   getAllQuotesByPerson,
-  addQuote
+  addQuote,
+  getQuoteById,
+  getIndexById
 };
