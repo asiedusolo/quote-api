@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const { quotes } = require('./data');
-const { getRandomElement, getAllQuotesByPerson, addQuote, getQuoteById, getIndexById } = require('./utils');
+const { getRandomElement, getAllQuotesByPerson, addQuote, getQuoteById, getIndexById, updateQuote } = require('./utils');
 
 const PORT = process.env.PORT || 4001;
 
@@ -50,7 +50,12 @@ app.post('/api/quotes', (req, res, next) => {
 app.put('/api/quotes/:id', (req, res, next) => {
     const quoteIndex = getIndexById(req.params.id, quotes)
     if(quoteIndex){
-        
+        updateQuote(req.params.id, quotes, req.query)
+        res.send({
+            quote: req.query
+        })
+    }else{
+        res.status(404).send()
     }
 })
 
