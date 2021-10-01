@@ -10,7 +10,7 @@ const getQuoteById = (id, quotes) => {
 
 const getIndexById = (id, quotes) => {
   return quotes.findIndex(quote => {
-    return quote.id === id
+    return quote.id === Number(id)
   })
 }
 
@@ -35,9 +35,9 @@ const addQuote = (queryObject) => {
     quoteIdCounter += 1
     currentQuoteId = quoteIdCounter
     return {
-      id: currentQuoteId,
-      quote: queryObject.quote,
-      person: queryObject.person
+      'id': currentQuoteId,
+      'quote': queryObject.quote,
+      'person': queryObject.person
     }
   }else{
     return false
@@ -52,7 +52,10 @@ const updateQuote = (id, quotes, queryObj) => {
   if(queryObj.id){
     queryObj.id = Number(queryObj.id)
   }
+  queryObj.id = Number(id)
+  // console.log(queryObj)
   quotes[elementIndex] = queryObj
+  // console.log(quotes)
   return quotes[elementIndex]
 }
 
@@ -62,5 +65,5 @@ module.exports = {
   addQuote,
   getQuoteById,
   getIndexById,
-  updateQuote
+  updateQuote,
 };

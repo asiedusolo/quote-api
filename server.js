@@ -49,11 +49,24 @@ app.post('/api/quotes', (req, res, next) => {
 
 app.put('/api/quotes/:id', (req, res, next) => {
     const quoteIndex = getIndexById(req.params.id, quotes)
+    // console.log(quoteIndex)
     if(quoteIndex !== -1){
         updateQuote(req.params.id, quotes, req.query)
+        // console.log(req.params)
+        // console.log(req.query)
         res.send({
-            quote: req.query
+            quotes: quotes
         })
+    }else{
+        res.status(404).send()
+    }
+})
+
+app.delete('/api/quotes/:id', (req, res, next) => {
+    const quoteIndex = getIndexById(req.params.id, quotes)
+    if(quoteIndex !== -1){
+        quotes.splice(quoteIndex, 1)
+        res.send(quotes)
     }else{
         res.status(404).send()
     }
