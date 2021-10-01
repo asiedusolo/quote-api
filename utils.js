@@ -13,7 +13,19 @@ const getAllQuotesByPerson = (person, arr) => {
   return allQuotes
 }
 
+const addQuote = (queryObject) => {
+  if(queryObject.hasOwnProperty('quote') && queryObject.hasOwnProperty('person')){
+    return {
+      quote: queryObject.quote,
+      person: queryObject.person
+    }
+  }else{
+    return false
+  }
+}
+
 module.exports = {
   getRandomElement,
-  getAllQuotesByPerson
+  getAllQuotesByPerson,
+  addQuote
 };

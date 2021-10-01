@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const { quotes } = require('./data');
-const { getRandomElement, getAllQuotesByPerson } = require('./utils');
+const { getRandomElement, getAllQuotesByPerson, addQuote } = require('./utils');
 
 const PORT = process.env.PORT || 4001;
 
@@ -32,6 +32,18 @@ app.get('/api/quotes', (req, res, next) => {
             quotes: personQuotes
         }
         res.send(allQuotesObj)
+    }
+})
+
+app.post('/api/quotes', (req, res, next) => {
+    const newQuote = addQuote(req.query)
+    if(newQuote){
+        quotes.push(newQuote)
+        res.send({
+            quote: newQuote
+        })
+    }else{
+        res.status(400).send()
     }
 })
 
