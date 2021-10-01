@@ -1,3 +1,12 @@
+let currentQuote = 0
+
+const getQuoteById = (id, quotes) => {
+  const quote = quotes.find(quote => {
+    return quote.id === id
+  })
+  return quote
+}
+
 const getRandomElement = arr => {
   if (!Array.isArray(arr)) throw new Error('Expected an array');
   return arr[Math.floor(Math.random() * arr.length)];
@@ -14,6 +23,7 @@ const getAllQuotesByPerson = (person, arr) => {
 }
 
 const addQuote = (queryObject) => {
+
   if(queryObject.hasOwnProperty('quote') && queryObject.hasOwnProperty('person')){
     return {
       quote: queryObject.quote,
