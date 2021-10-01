@@ -49,7 +49,7 @@ app.post('/api/quotes', (req, res, next) => {
 
 app.put('/api/quotes/:id', (req, res, next) => {
     const quoteIndex = getIndexById(req.params.id, quotes)
-    if(quoteIndex){
+    if(quoteIndex !== -1){
         updateQuote(req.params.id, quotes, req.query)
         res.send({
             quote: req.query

@@ -45,12 +45,15 @@ const addQuote = (queryObject) => {
 }
 
 const updateQuote = (id, quotes, queryObj) => {
-  quotes.forEach(quote => {
-    if(quote.id === id){
-      quote.quote = queryObj.quote
-      quote.person = queryObj.person
-    }
-  })
+  const elementIndex = getIndexById(id, quotes)
+  if(elementIndex === -1){
+    throw new Error('updateElement must be called with a valid id parameter')
+  }
+  if(queryObj.id){
+    queryObj.id = Number(queryObj.id)
+  }
+  quotes[elementIndex] = queryObj
+  return quotes[elementIndex]
 }
 
 module.exports = {
