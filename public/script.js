@@ -23,13 +23,33 @@ const renderQuotes = (quotes = []) => {
       const newQuote = document.createElement('div');
       newQuote.className = 'single-quote';
       newQuote.innerHTML = `<div class="quote-text">${quote.quote}</div>
-      <div class="attribution">- ${quote.person}</div>`;
+      <div class="attribution">- ${quote.person}</div><button class="delete-btn" data-id=${quote.id}>Delete Quote</button`;
       quoteContainer.appendChild(newQuote);
     });
   } else {
     quoteContainer.innerHTML = '<p>Your request returned no quotes.</p>';
   }
 }
+
+quoteContainer.addEventListener('click', (e) => {
+  if(e.target.classList.contains('delete-btn')){
+    const id = e.target.dataset.id
+    // alert(e.target.dataset.id)
+    fetch(`/api/quotes/${id}`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      if(response.ok){
+        return response.json()
+      }else{
+        renderError(response)
+      }
+    })
+    .then(response => {
+      renderQuotes(response.quotes)
+    })
+  }
+})
 
 fetchAllButton.addEventListener('click', () => {
   fetch('/api/quotes')
