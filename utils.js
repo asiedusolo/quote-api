@@ -1,4 +1,6 @@
-let quoteIdCounter = 0
+const { quotes } = require('./data');
+
+let quoteIdCounter = quotes.length
 const getQuoteById = (id, quotes) => {
   const quote = quotes.find(quote => {
     return quote.id === id
@@ -42,10 +44,20 @@ const addQuote = (queryObject) => {
   }
 }
 
+const updateQuote = (id, quotes, queryObj) => {
+  quotes.forEach(quote => {
+    if(quote.id === id){
+      quote.quote = queryObj.quote
+      quote.person = queryObj.person
+    }
+  })
+}
+
 module.exports = {
   getRandomElement,
   getAllQuotesByPerson,
   addQuote,
   getQuoteById,
-  getIndexById
+  getIndexById,
+  updateQuote
 };

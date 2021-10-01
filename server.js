@@ -47,6 +47,13 @@ app.post('/api/quotes', (req, res, next) => {
     }
 })
 
+app.put('/api/quotes/:id', (req, res, next) => {
+    const quoteIndex = getIndexById(req.params.id, quotes)
+    if(quoteIndex){
+        
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server is up and running on port ${PORT}`)
 })
