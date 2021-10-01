@@ -37,8 +37,10 @@ app.get('/api/quotes', (req, res, next) => {
 
 app.get('/api/quotes/:id', (req, res, next) => {
     const quoteIndex = getIndexById(req.params.id, quotes)
+    // console.log(quoteIndex)
     if(quoteIndex !== -1){
         const quoteById = getQuoteById(req.params.id, quotes)
+        // console.log(quoteById)
         res.send({
             quote: quoteById
         }) 

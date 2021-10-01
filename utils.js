@@ -2,10 +2,10 @@ const { quotes } = require('./data');
 
 let quoteIdCounter = quotes.length
 const getQuoteById = (id, quotes) => {
-  const quote = quotes.find(quote => {
-    return quote.id === id
+  return quotes.find(quote => {
+    return quote.id === Number(id)
   })
-  return quote
+  
 }
 
 const getIndexById = (id, quotes) => {
