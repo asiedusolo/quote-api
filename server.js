@@ -65,11 +65,11 @@ app.put('/api/quotes/:id', (req, res, next) => {
     const quoteIndex = getIndexById(req.params.id, quotes)
     // console.log(quoteIndex)
     if(quoteIndex !== -1){
-        updateQuote(req.params.id, quotes, req.query)
+        const updatedQuote = updateQuote(req.params.id, quotes, req.query)
         // console.log(req.params)
         // console.log(req.query)
         res.send({
-            quotes: quotes
+            quote: updatedQuote
         })
     }else{
         res.status(404).send()

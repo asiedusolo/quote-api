@@ -116,7 +116,7 @@ updateById.addEventListener('click', () => {
     }
   })
   .then(response => {
-    renderQuotes(response.quotes)
+    renderQuotes([response.quote])
     updateContainer.removeChild(updateContainer.lastChild)
   })
 })
