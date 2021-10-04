@@ -90,10 +90,11 @@ quoteContainer.addEventListener("click", (e) => {
         person.value = quoteToUpdate.person;
         quoteDiv.append(quote)
         quoteDiv.append(person)
-        if(updateContainer.length === 3){
-          updateContainer.append(quoteDiv);
-        }else{
+        if(updateContainer.length === 4){
           updateContainer.removeChild(updateContainer.lastChild)
+          updateContainer.append(quoteDiv);
+        }
+        else{
           updateContainer.append(quoteDiv)
         }
       });
@@ -132,6 +133,9 @@ fetchAllButton.addEventListener("click", () => {
     })
     .then((response) => {
       renderQuotes(response.quotes);
+      if(updateContainer.length > 3){
+        updateContainer.removeChild(updateContainer.lastChild)
+      }
     });
 });
 
